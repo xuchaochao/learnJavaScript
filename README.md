@@ -18,5 +18,3 @@ alert(name.age); //undefined
 
 
 
-
-
