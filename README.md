@@ -7,10 +7,14 @@
 对于**引用类型值**我们可以为其添加属性和方法，也可以改变和删除其属性和方法。对**基本类型值**则不行。
 
 ```js
+var person = new Object();
+person.name = "John";
+alert(person.name); // "John"
 
+var name = "John";
+name.age = 27;
+alert(name.age); //undefined
 ```
-
-
 
 
 
