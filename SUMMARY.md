@@ -5,7 +5,6 @@
 * [引用类型](chapter1.md)
   * [Object类型](objectlei-xing.md)
   * [Array类型](arraylei-xing.md)
+  * [Date类型](datelei-xing.md)
 * [面向对象的程序设计](mian-xiang-dui-xiang-de-cheng-xu-she-ji.md)
-
-
 
