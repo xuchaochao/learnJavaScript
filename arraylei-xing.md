@@ -214,7 +214,7 @@ splice\(\) 功能强大，能实现删除、插入和替换
 
 #### 位置方法
 
-indexOf\(\) ：接受下标作参数，从左到右的方式查找   
+indexOf\(\) ：接受下标作参数，从左到右的方式查找  
 lastIndexOf\(\) ：接受下标作参数，从右到左的方式查找。  
 在没有找到的情况下返回-1
 
@@ -276,10 +276,10 @@ numbers.forEach(function(item, index, array){
 });
 ```
 
-
 #### 归并方法
 
-ECMAScript 5 还新增了两个归并数组的方法： reduce()和 reduceRight()。这两个方法都会迭代数组的所有项，然后构建一个最终返回的值。唯一不同的就是reduce从左到右，reduceRight()从右到左。它们都接收 4 个参数：前一个值、当前值、项的索引和数组对象。
+ECMAScript 5 还新增了两个归并数组的方法： reduce\(\)和 reduceRight\(\)。这两个方法都会迭代数组的所有项，然后构建一个最终返回的值。唯一不同的就是reduce从左到右，reduceRight\(\)从右到左。它们都接收 4 个参数：前一个值、当前值、项的索引和数组对象。
+
 ```js
 // reduce
 var values = [1,2,3,4,5];
@@ -295,5 +295,6 @@ var sum = values.reduceRight(function(prev, cur, index, array){
 });
 alert(sum); //15
 ```
+
 
 
