@@ -6,5 +6,7 @@
   * [Object类型](objectlei-xing.md)
   * [Array类型](arraylei-xing.md)
   * [Date类型](datelei-xing.md)
+  * [RegExp类型](regexplei-xing.md)
+  * [Function类型](functionlei-xing.md)
 * [面向对象的程序设计](mian-xiang-dui-xiang-de-cheng-xu-she-ji.md)
 
