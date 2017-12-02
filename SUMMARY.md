@@ -12,6 +12,6 @@
   * [单体内置对象](dan-ti-nei-zhi-dui-xiang.md)
 * [面向对象的程序设计](mian-xiang-dui-xiang-de-cheng-xu-she-ji.md)
   * [理解对象](mian-xiang-dui-xiang-de-cheng-xu-she-ji/li-jie-dui-xiang.md)
-  * 创建对象
+  * [创建对象](mian-xiang-dui-xiang-de-cheng-xu-she-ji/chuang-jian-dui-xiang.md)
   * 继承
 
