@@ -8,5 +8,6 @@
   * [Date类型](datelei-xing.md)
   * [RegExp类型](regexplei-xing.md)
   * [Function类型](functionlei-xing.md)
+  * [基本包装类型](ji-ben-bao-zhuang-lei-xing.md)
 * [面向对象的程序设计](mian-xiang-dui-xiang-de-cheng-xu-she-ji.md)
 

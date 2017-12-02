@@ -165,7 +165,8 @@ alert(callSum2(10,10)); //20
 
 > 在严格模式下，未指定环境对象而调用函数，则 this 值不会转型为 window。除非明确把函数添加到某个对象或者调用 apply\(\)或 call\(\)，否则 this 值将是undefined。
 
-call\(\)方法与 apply\(\)方法的作用相同，它们的区别仅在于接收参数的方式不同。在使用call\(\)方法时，传递给函数的参数必须逐个列举出来:
+call\(\)方法与 apply\(\)方法的作用相同，它们的区别仅在于接收参数的方式不同。在使用  
+call\(\)方法时，传递给函数的参数必须逐个列举出来:
 
 ```js
 function sum(num1, num2){
@@ -176,7 +177,9 @@ function callSum(num1, num2){
 }
 alert(callSum(10,10)); //20
 ```
-事实上，传递参数并非 apply()和 call()真正的用武之地；它们真正强大的地方是能够扩充函数赖以运行的作用域:
+
+事实上，传递参数并非 apply\(\)和 call\(\)真正的用武之地；它们真正强大的地方是能够扩充函数赖以运行的作用域:
+
 ```js
 window.color = "red";
 var o = { color: "blue" };
@@ -191,7 +194,9 @@ sayColor.call(this); //red
 sayColor.call(window); //red
 sayColor.call(o) //blue
 ```
-ECMAScript 5 还定义了一个方法： bind()。这个方法会创建一个函数的实例，其 this 值会被绑定到传给 bind()函数的值。
+
+ECMAScript 5 还定义了一个方法： bind\(\)。这个方法会创建一个函数的实例，其 this 值会被绑定到传给 bind\(\)函数的值。
+
 ```js
 window.color = "red";
 var o = { color: "blue" };
@@ -202,7 +207,6 @@ function sayColor(){
 var objectSayColor = sayColor.bind(o);
 objectSayColor(); //blue
 ```
-
 
 
 
