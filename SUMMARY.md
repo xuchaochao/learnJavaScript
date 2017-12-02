@@ -9,5 +9,6 @@
   * [RegExp类型](regexplei-xing.md)
   * [Function类型](functionlei-xing.md)
   * [基本包装类型](ji-ben-bao-zhuang-lei-xing.md)
+  * [单体内置对象](dan-ti-nei-zhi-dui-xiang.md)
 * [面向对象的程序设计](mian-xiang-dui-xiang-de-cheng-xu-she-ji.md)
 
