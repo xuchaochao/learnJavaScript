@@ -13,5 +13,5 @@
 * [面向对象的程序设计](mian-xiang-dui-xiang-de-cheng-xu-she-ji.md)
   * [理解对象](mian-xiang-dui-xiang-de-cheng-xu-she-ji/li-jie-dui-xiang.md)
   * [创建对象](mian-xiang-dui-xiang-de-cheng-xu-she-ji/chuang-jian-dui-xiang.md)
-  * 继承
+  * [继承](mian-xiang-dui-xiang-de-cheng-xu-she-ji/ji-cheng.md)
 
