@@ -109,7 +109,94 @@ compareNames = null;
 
 > 由于闭包会携带包含它的函数的作用域，因此会比其他函数占用更多的内存。过度使用闭包可能会导致内存占用过多，我们建议读者只在绝对必要时再考虑使用闭包。虽然像 V8 等优化后的 JavaScript 引擎会尝试回收被闭包占用的内存，但请大家还是要慎重使用闭包。
 
-#### 闭包与变量
+##### 闭包与变量
 
+作用域链的这种配置机制引出了一个值得注意的副作用，即闭包只能取得包含函数中任何变量的最后一个值。
 
+```js
+function createFunctions(){
+    var result = new Array();
+    for (var i=0; i < 10; i++){
+        result[i] = function(){
+            return i;
+        };
+    }
+    return result;
+}
+```
+实际上，上面的每个函数都返回 10。因为每个函数的作用域链中都保存着createFunctions\(\) 函数的活动对象，所以它们引用的都是同一个变量i 。当createFunctions\(\)函数返回后，变量 i 的值是10，此时每个函数都引用着保存变量 i 的同一个变量对象，所以在每个函数内部 i 的值都是 10。但是，我们可以通过创建另一个匿名函数强制让闭包的行为符合预期。
+```js
+function createFunctions(){
+    var result = new Array();
+    for (var i=0; i < 10; i++){
+        result[i] = function(num){
+            return function(){
+                return num;
+            };
+        }(i);
+    }
+    return result;
+}
+```
+**关于this对象**
+this 对象是在运行时基于函数的执行环境绑定的：在全局函数中， this 等于 window，而当函数被作为某个对象的方法调用时， this 等于那个对象。不过，匿名函数的执行环境具有全局性，因此其 this 对象通常指向 window。
+```js
+var name = "The Window";
+var object = {
+    name : "My Object",
+    getNameFunc : function(){
+        var that = this;
+        return function(){
+            return that.name;
+        };
+    }
+};
+alert(object.getNameFunc()()); //"My Object"
+```
+> this 和 arguments 也存在同样的问题。如果想访问作用域中的 arguments 对
+象，必须将对该对象的引用保存到另一个闭包能够访问的变量中。
 
+##### 模仿块级作用域
+JavaScript 没有块级作用域的概念。所以私有的变量不会销毁。
+```js
+function outputNumbers(count){
+    for (var i=0; i < count; i++){
+        alert(i);
+    }
+    alert(i); //计数
+}
+```
+匿名函数可以用来模仿块级作用域并避免这个问题。
+```js
+function outputNumbers(count){
+    (function () {
+        for (var i=0; i < count; i++){
+            alert(i);
+        }
+    })();
+    alert(i); //导致一个错误！
+}
+```
+> 这种做法可以减少闭包占用的内存问题，因为没有指向匿名函数的引用。只要函数执行完毕，就可以立即销毁其作用域链了。
+
+#### 私有变量
+> 初始化未经声明的变量，总是会创建一个全局变量。
+任何在函数中定义的变量，都可以认为是私有变量，因为不能在函数的外部访问这些变量。私有变量包括函数的参数、局部变量和在函数内部定义的其他函数。
+我们把有权访问私有变量和私有函数的公有方法称为特权方法（privileged method）。
+```js
+(function(){
+    //私有变量和私有函数
+    var privateVariable = 10;
+    function privateFunction(){
+        return false;
+    }
+    //构造函数
+    MyObject = function(){
+    };
+    //公有/特权方法
+    MyObject.prototype.publicMethod = function(){
+        privateVariable++;
+        return privateFunction();
+    };
+})();
+```
