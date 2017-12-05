@@ -17,4 +17,5 @@
 * [函数表达式](han-shu-biao-da-shi.md)
 * [BOM](bom.md)
   * [window对象](bom/windowdui-xiang.md)
+  * [location对象](bom/locationdui-xiang.md)
 
