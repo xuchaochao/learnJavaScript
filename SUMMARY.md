@@ -16,4 +16,7 @@
   * [继承](mian-xiang-dui-xiang-de-cheng-xu-she-ji/ji-cheng.md)
 * [函数表达式](han-shu-biao-da-shi.md)
 * [BOM](bom.md)
+  * window对象
+
+
 
