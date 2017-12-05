@@ -18,4 +18,7 @@
 * [BOM](bom.md)
   * [window对象](bom/windowdui-xiang.md)
   * [location对象](bom/locationdui-xiang.md)
+  * [navigator对象](bom/navigatordui-xiang.md)
+  * [screen对象](bom/screendui-xiang.md)
+  * [history对象](bom/historydui-xiang.md)
 
