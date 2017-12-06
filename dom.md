@@ -171,8 +171,206 @@ var div = document.getElementById("myDiv"); //取得<div>元素的引用
 ```
 > IE8 及较低版本不区分 ID 的大小写
 
-getElementsByTagName()。这个方法接受一个参数，即要
-取得元素的标签名，而返回的是包含零或多个元素的 NodeList。
+getElementsByTagName()。这个方法接受一个参数，即要取得元素的标签名，而返回的是包含零或多个元素的 NodeList。
 ```js
 var images = document.getElementsByTagName("img");
+```
+getElementsByClassName()。这个方法接受一个参数，即要取得元素的类名，而返回的是包含零或多个元素的 NodeList。
+
+getElementsByName()。顾名思义，这个方法会返回带有给定 name 特性的所有元素。
+
+4.特殊集合
+document.anchors，包含文档中所有带 name 特性的`<a>`元素；
+- document.applets，包含文档中所有的<applet>元素，因为不再推荐使用`<applet>`元素，
+所以这个集合已经不建议使用了；
+- document.forms，包含文档中所有的`<form>`元素，与 document.getElementsByTagName("form")
+得到的结果相同；
+- document.images，包含文档中所有的`<img>`元素，与 document.getElementsByTagName
+("img")得到的结果相同；
+- document.links，包含文档中所有带 href 特性的`<a>`元素。
+
+5.DOM 一致性检测
+hasFeature()方法接受两个参数：要检测的 DOM 功能的名称及版本号。如果浏览器支持给定名称和版本的功能，则该方法返回 true：
+```js
+var hasXmlDom = document.implementation.hasFeature("XML", "1.0");
+```
+6.文档写入
+write()和 writeln()方法都接受一个字符串参数，即要写入到输出流中的文本。 write()会原样写入，而 writeln()则会在字符串的末尾添加一个换行符（\n）。
+方法 open()和 close()分别用于打开和关闭网页的输出流。
+
+#### Element类型
+除了 Document 类型之外， Element 类型就要算是 Web 编程中最常用的类型了。 Element 类型用于表现 XML 或 HTML 元素，提供了对元素标签名、子节点及特性的访问。 Element 节点具有以下特征：
+- nodeType 的值为 1；
+- nodeName 的值为元素的标签名；
+- nodeValue 的值为 null；
+- parentNode 可能是 Document 或 Element；
+- 其子节点可能是 Element、 Text、 Comment、 ProcessingInstruction、 CDATASection 或EntityReference。
+
+1.HTML元素
+所有 HTML 元素都由 HTMLElement 类型表示。每个 HTML 元素中都存在的下列标准特性。
+id，元素在文档中的唯一标识符。
+- title，有关元素的附加说明信息，一般通过工具提示条显示出来。
+- lang，元素内容的语言代码，很少使用。
+- dir，语言的方向，值为"ltr"（left-to-right，从左至右）或"rtl"（right-to-left，从右至左） ，也很少使用。
+- className，与元素的 class 特性对应，即为元素指定的 CSS 类。
+
+```js
+var div = document.getElementById("myDiv");
+alert(div.id); //"myDiv""
+alert(div.className); //"bd"
+alert(div.title); //"Body text"
+alert(div.lang); //"en"
+alert(div.dir); //"ltr"
+```
+2.取得特性
+操作特性的 DOM 方法主要有三个，分别是 getAttribute()、 setAttribute()和 removeAttribute()。
+```js
+var div = document.getElementById("myDiv");
+alert(div.getAttribute("id")); //"myDiv"
+```
+3.设置特性
+```js
+div.setAttribute("id", "someOtherId");// div.id = "someOtherId";
+```
+4.attributes 属性
+Element 类型是使用 attributes 属性的唯一一个 DOM 节点类型。attributes 属性中包含一个NamedNodeMap，与 NodeList 类似，也是一个“动态”的集合。元素的每一个特性都由一个 Attr 节点表示，每个节点都保存在 NamedNodeMap 对象中。 NamedNodeMap 对象拥有下列方法。
+- getNamedItem(name)：返回 nodeName 属性等于 name 的节点；
+- removeNamedItem(name)：从列表中移除 nodeName 属性等于 name 的节点；
+- setNamedItem(node)：向列表中添加节点，以节点的 nodeName 属性为索引；
+- item(pos)：返回位于数字 pos 位置处的节点。
+
+```js
+var id = element.attributes.getNamedItem("id").nodeValue;
+var id = element.attributes["id"].nodeValue;
+element.attributes["id"].nodeValue = "someOtherId";
+var oldAttr = element.attributes.removeNamedItem("id");
+```
+
+5.创建元素
+使用 document.createElement()方法可以创建新元素。
+```js
+var div = document.createElement("div");
+div.id = "myNewDiv";
+div.className = "box";
+// 创建后存内存中，还要插入到document中
+document.body.appendChild(div);
+```
+
+6.元素的子节点
+元素的 childNodes 属性中包含了它的所有子节点这些子节点有可能是元素、文本节点、注释或处理指令。
+```js
+for (var i=0, len=element.childNodes.length; i < len; i++){
+    if (element.childNodes[i].nodeType == 1){
+        //执行某些操作
+    }
+}
+```
+
+#### Text类型
+文本节点由 Text 类型表示，包含的是可以照字面解释的纯文本内容。纯文本中可以包含转义后的 HTML 字符，但不能包含 HTML 代码。 Text 节点具有以下特征：
+- nodeType 的值为 3；
+- nodeName 的值为"#text"；
+- nodeValue 的值为节点所包含的文本；
+- parentNode 是一个 Element；
+- 不支持（没有）子节点。
+可以通过 nodeValue 属性或 data 属性访问 Text 节点中包含的文本，这两个属性中包含的值相
+同。对 nodeValue 的修改也会通过 data 反映出来，反之亦然。使用下列方法可以操作节点中的文本。
+- appendData(text)：将 text 添加到节点的末尾。
+- deleteData(offset, count)：从 offset 指定的位置开始删除 count 个字符。
+- insertData(offset, text)：在 offset 指定的位置插入 text。
+- replaceData(offset, count, text)：用 text 替换从 offset 指定的位置开始到 offset+count 为止处的文本。
+- splitText(offset)：从 offset 指定的位置将当前文本节点分成两个文本节点。
+- substringData(offset, count)：提取从 offset 指定的位置开始到 offset+count 为止处的字符串。
+> 每个可以包含内容的元素最多只能有一个文本节点。
+
+```html
+<!-- 没有内容，也就没有文本节点 -->
+<div></div>
+<!-- 有空格，因而有一个文本节点 -->
+<div> </div>
+<!-- 有内容，因而有一个文本节点 -->
+<div>Hello World!</div>
+```
+
+1.创建文本节点
+```js
+var textNode = document.createTextNode("<strong>Hello</strong> world!");
+```
+2.规范化文本节点
+normalize()方法，则会将所有文本节点合并成一个节点。
+
+3.分割文本节点
+splitText()。这个方法会将一个文本节点分成两个文本节点，即按照指定的位置分割 nodeValue 值。
+```js
+var element = document.createElement("div");
+element.className = "message";
+var textNode = document.createTextNode("Hello world!");
+element.appendChild(textNode);
+document.body.appendChild(element);
+var newNode = element.firstChild.splitText(5);
+alert(element.firstChild.nodeValue); //"Hello"
+alert(newNode.nodeValue); //" world!"
+alert(element.childNodes.length); //2
+```
+#### Comment类型
+注释在 DOM 中是通过 Comment 类型来表示的。 Comment 节点具有下列特征：
+- nodeType 的值为 8；
+- nodeName 的值为"#comment"；
+- nodeValue 的值是注释的内容；
+- parentNode 可能是 Document 或 Element；
+- 不支持（没有）子节点。
+
+```html
+<div id="myDiv"><!--A comment --></div>
+```
+```js
+var div = document.getElementById("myDiv");
+var comment = div.firstChild;
+alert(comment.data); //"A comment"
+```
+使用 document.createComment()并为其传递注释文本也可以创建注释节点
+
+### DOM操作技术
+#### 动态脚本
+动态加载的外部 JavaScript 文件能够立即运行，比如下面的<script>元素：
+```html
+<script type="text/javascript" src="client.js"></script>
+```
+```js
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.src = "client.js";
+document.body.appendChild(script);
+```
+```js
+// 封装成函数
+function loadScript(url){
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = url;
+    document.body.appendChild(script);
+}
+```
+#### 动态样式
+```js
+function loadStyles(url){
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = url;
+    var head = document.getElementsByTagName("head")[0];
+    head.appendChild(link);
+}
+```
+
+#### 使用NodeList
+理解 NodeList 及其“近亲” NamedNodeMap 和 HTMLCollection，是从整体上透彻理解 DOM 的关键所在。这三个集合都是“动态的”；换句话说，每当文档结构发生变化时，它们都会得到更新。因此，它们始终都会保存着最新、最准确的信息。从本质上说，所有 NodeList 对象都是在访问 DOM 文档时实时运行的查询。例如，下列代码会导致无限循环：
+```js
+var divs = document.getElementsByTagName("div"),
+    i,
+    div;
+for (i=0; i < divs.length; i++){
+    div = document.createElement("div");
+    document.body.appendChild(div);
+}
 ```
