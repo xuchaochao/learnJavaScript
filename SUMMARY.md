@@ -21,4 +21,5 @@
   * [navigator对象](bom/navigatordui-xiang.md)
   * [screen对象](bom/screendui-xiang.md)
   * [history对象](bom/historydui-xiang.md)
+* [客户端检测](liu-lan-qi-jian-ce.md)
 
