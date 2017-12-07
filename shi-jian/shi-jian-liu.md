@@ -22,8 +22,7 @@ IE 的事件流叫做事件冒泡（event bubbling），即事件开始时由最
 Netscape Communicator 团队提出的另一种事件流叫做事件捕获（event capturing）。事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。
 ![](/assets/深度截图_选择区域_20171207085537.png)
 
-虽然事件捕获是 Netscape Communicator 唯一支持的事件流模型，但 IE9、 Safari、 Chrome、 Opera 和 Firefox 目前也都支持这种事件流模型。尽管“ DOM2 级事件”规范要求事件应该从 document 对象
-开始传播，但这些浏览器都是从 window 对象开始捕获事件的。
+虽然事件捕获是 Netscape Communicator 唯一支持的事件流模型，但 IE9、 Safari、 Chrome、 Opera 和 Firefox 目前也都支持这种事件流模型。尽管“ DOM2 级事件”规范要求事件应该从 document 对象开始传播，但这些浏览器都是从 window 对象开始捕获事件的。
 > 由于老版本的浏览器不支持，因此很少有人使用事件捕获。我们也建议读者放心地使用事件冒泡，在有特殊需要时再使用事件捕获。
 
 #### DOM事件流
