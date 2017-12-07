@@ -25,7 +25,5 @@
 * [DOM](dom.md)
 * [DOM扩展](domkuo-zhan.md)
 * [事件](shi-jian.md)
-  * 事件流
-
-
+  * [事件流](shi-jian/shi-jian-liu.md)
 
