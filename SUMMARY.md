@@ -30,7 +30,5 @@
   * [事件对象](shi-jian/shi-jian-dui-xiang.md)
   * [事件类型](shi-jian/shi-jian-lei-xing.md)
 * [表单脚本](biao-dan-jiao-ben.md)
-  * 表单的基础知识
-
-
+  * [表单的基础知识](biao-dan-jiao-ben/biao-dan-de-ji-chu-zhi-shi.md)
 
